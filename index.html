@@ -1,159 +1,356 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUMO PAY PREMIUM</title>
 
-<title>Checkers PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
 body{
-    margin:0;
-    overflow:hidden;
-    font-family:sans-serif;
-    background:
-    radial-gradient(circle at top,#1e293b,#020617);
+background:#050505;
+color:white;
+overflow-x:hidden;
 }
 
-/* MENU */
-#menu{
-    position:fixed;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:18px;
-    background:rgba(0,0,0,.92);
-    z-index:50;
+.container{
+max-width:430px;
+margin:auto;
+padding:20px;
+padding-bottom:120px;
 }
 
-.title{
-    color:white;
-    font-size:42px;
-    font-weight:bold;
-    text-shadow:0 0 25px orange;
+.logo{
+font-size:32px;
+font-weight:800;
+background:linear-gradient(to right,#FFD700,#caa300);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.profile{
+width:50px;
+height:50px;
+border-radius:50%;
+background:linear-gradient(135deg,#FFD700,#8b6508);
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:800;
+color:black;
+}
+
+.card{
+background:linear-gradient(135deg,#111,#1d1d1d);
+padding:25px;
+border-radius:30px;
+border:1px solid rgba(255,215,0,.15);
+box-shadow:0 0 40px rgba(255,215,0,.08);
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:'';
+position:absolute;
+width:200px;
+height:200px;
+background:radial-gradient(circle,rgba(255,215,0,.15),transparent);
+top:-70px;
+right:-70px;
+}
+
+.balance-title{
+color:#888;
+font-size:14px;
+}
+
+.balance{
+font-size:40px;
+font-weight:800;
+margin-top:10px;
+}
+
+.card-number{
+margin-top:30px;
+letter-spacing:4px;
+font-size:18px;
+color:#ddd;
+}
+
+.bottom-card{
+margin-top:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.humo{
+font-size:24px;
+font-weight:800;
+color:#FFD700;
+}
+
+.actions{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-top:30px;
+}
+
+.action{
+background:#111;
+padding:18px 10px;
+border-radius:22px;
+text-align:center;
+cursor:pointer;
+transition:.3s;
+border:1px solid rgba(255,215,0,.08);
+}
+
+.action:hover{
+transform:translateY(-5px);
+border-color:#FFD700;
+}
+
+.action img{
+width:35px;
+height:35px;
+margin-bottom:10px;
+}
+
+.action p{
+font-size:12px;
+color:#ccc;
+}
+
+.section-title{
+margin-top:35px;
+margin-bottom:18px;
+font-size:22px;
+font-weight:700;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.service{
+background:#111;
+padding:20px;
+border-radius:24px;
+cursor:pointer;
+transition:.3s;
+border:1px solid rgba(255,215,0,.08);
+}
+
+.service:hover{
+transform:scale(1.03);
+border-color:#FFD700;
+}
+
+.service img{
+width:40px;
+height:40px;
+}
+
+.service h3{
+margin-top:15px;
+}
+
+.service p{
+font-size:13px;
+color:#999;
+margin-top:8px;
+}
+
+.transactions{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.transaction{
+background:#111;
+padding:18px;
+border-radius:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border:1px solid rgba(255,215,0,.08);
+}
+
+.left{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.circle{
+width:50px;
+height:50px;
+border-radius:50%;
+background:linear-gradient(135deg,#FFD700,#8b6508);
+display:flex;
+justify-content:center;
+align-items:center;
+font-weight:800;
+color:black;
+}
+
+.green{
+color:#00ff99;
+font-weight:700;
+}
+
+.red{
+color:#ff5577;
+font-weight:700;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#0a0a0a;
+display:flex;
+justify-content:space-around;
+padding:15px 0;
+border-top:1px solid rgba(255,215,0,.1);
+z-index:999;
+}
+
+.nav-item{
+font-size:13px;
+text-align:center;
+color:#888;
+cursor:pointer;
+}
+
+.active{
+color:#FFD700;
+}
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+z-index:9999;
+overflow:auto;
+}
+
+.modal-content{
+background:#111;
+width:100%;
+max-width:380px;
+padding:25px;
+border-radius:30px;
+border:1px solid rgba(255,215,0,.15);
+}
+
+input{
+width:100%;
+padding:15px;
+background:#1d1d1d;
+border:none;
+border-radius:14px;
+margin-top:15px;
+color:white;
+font-size:15px;
 }
 
 button{
-    padding:14px 30px;
-    border:none;
-    border-radius:14px;
-    cursor:pointer;
-    font-size:18px;
-    font-weight:bold;
-    color:white;
-    background:
-    linear-gradient(135deg,#f59e0b,#ef4444);
-
-    box-shadow:
-    0 0 20px rgba(239,68,68,.4);
-
-    transition:.2s;
+width:100%;
+padding:15px;
+border:none;
+margin-top:18px;
+border-radius:15px;
+font-weight:700;
+cursor:pointer;
+background:#FFD700;
 }
 
-button:hover{
-    transform:scale(1.05);
+.close{
+background:#222;
+color:white;
 }
 
-.hud{
-    position:fixed;
-    bottom:12px;
-    left:12px;
-    color:white;
-    background:rgba(255,255,255,.08);
-    padding:12px 16px;
-    border-radius:16px;
-    backdrop-filter:blur(12px);
-    line-height:1.7;
-    font-size:16px;
-    z-index:20;
-    box-shadow:
-    0 0 20px rgba(0,0,0,.3);
+.receipt{
+background:linear-gradient(135deg,#fff8dc,#fff,#f6e7a1);
+color:black;
+padding:20px;
+border-radius:20px;
+margin-top:20px;
+position:relative;
+overflow:hidden;
 }
 
-#menuBtn{
-    position:fixed;
-    bottom:12px;
-    right:12px;
-    z-index:30;
-    border:none;
-    border-radius:16px;
-    padding:14px 18px;
-    font-size:17px;
-    font-weight:bold;
-    color:white;
-    background:
-    linear-gradient(
-        135deg,
-        #f59e0b,
-        #ef4444
-    );
-    box-shadow:
-    0 0 20px rgba(0,0,0,.35);
-    cursor:pointer;
+.receipt::before{
+content:'';
+position:absolute;
+width:200px;
+height:200px;
+background:radial-gradient(circle,rgba(255,215,0,.25),transparent);
+top:-70px;
+right:-70px;
 }
 
-#win{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.92);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    color:white;
-    z-index:60;
-    font-size:52px;
-    text-shadow:0 0 20px white;
-    gap:25px;
+.receipt-row{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+font-size:14px;
 }
 
 canvas{
-    display:block;
-    margin:auto;
-    image-rendering:auto;
-    filter:
-    drop-shadow(
-    0 0 40px rgba(255,140,0,.25));
+width:100%;
+background:#111;
+border-radius:20px;
+margin-top:20px;
 }
 
-@media(max-width:768px){
+.cards-scroll{
+display:flex;
+overflow-x:auto;
+gap:15px;
+padding-bottom:10px;
+scrollbar-width:none;
+}
 
-    .title{
-        font-size:30px;
-        text-align:center;
-    }
+.cards-scroll::-webkit-scrollbar{
+display:none;
+}
 
-    button{
-        font-size:16px;
-        padding:12px 22px;
-    }
-
-    .hud{
-        font-size:14px;
-        padding:10px 14px;
-        max-width:150px;
-    }
-
-    #menuBtn{
-        font-size:15px;
-        padding:12px 15px;
-    }
-
-    #win{
-        font-size:32px;
-        text-align:center;
-        padding:20px;
-    }
-
+.single-card{
+min-width:320px;
+flex-shrink:0;
 }
 
 </style>
@@ -161,1200 +358,660 @@ canvas{
 
 <body>
 
-<div id="menu">
+<div class="container">
 
-    <div class="title">
-        ⚫ CHECKERS PRO ⚪
-    </div>
+<div class="topbar">
+<div class="logo">HUMO PAY</div>
+<div class="profile">A</div>
+</div>
 
-    <div id="mainMenu"
-    style="display:flex;
-    flex-direction:column;
-    gap:15px;">
-
-        <button onclick="openColorMenu('pvp')">
-            👥 1 vs 1
-        </button>
-
-        <button onclick="openDifficultyMenu()">
-            🤖 vs Robot
-        </button>
-
-    </div>
-
-    <div id="difficultyMenu"
-    style="display:none;
-    flex-direction:column;
-    gap:15px;">
-
-        <h2 style="color:white">
-            Choose Difficulty
-        </h2>
-
-        <button onclick="setDifficulty('easy')">
-            🟢 Easy
-        </button>
-
-        <button onclick="setDifficulty('hard')">
-            🟠 Hard
-        </button>
-
-        <button onclick="setDifficulty('impossible')">
-            🔴 Impossible
-        </button>
-
-    </div>
-
-    <div id="colorMenu"
-    style="display:none;
-    flex-direction:column;
-    gap:15px;">
-
-        <h2 style="color:white">
-            Choose Color
-        </h2>
-
-        <button onclick="startGame('white')">
-            ⚪ Play White
-        </button>
-
-        <button onclick="startGame('black')">
-            ⚫ Play Black
-        </button>
-
-    </div>
+<div id="app"></div>
 
 </div>
 
-<div class="hud">
+<div class="bottom-nav">
 
-    Turn:
-    <span id="turn">White</span>
+<div class="nav-item active" id="homeBtn" onclick="showPage('home')">
+🏠<br>Home
+</div>
 
-    <br>
+<div class="nav-item" id="statsBtn" onclick="showPage('stats')">
+📊<br>Statistika
+</div>
 
-    ⚪ White:
-    <span id="wscore">0</span>
+<div class="nav-item" id="walletBtn" onclick="showPage('wallet')">
+💳<br>Wallet
+</div>
 
-    <br>
-
-    ⚫ Black:
-    <span id="bscore">0</span>
+<div class="nav-item" id="profileBtn" onclick="showPage('profile')">
+👤<br>Profil
+</div>
 
 </div>
 
-<button id="menuBtn"
-onclick="location.reload()">
-☰ Menu
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<h2 id="modalTitle">Title</h2>
+
+<div id="modalBody"></div>
+
+<button class="close" onclick="closeModal()">
+Yopish
 </button>
 
-<div id="win"></div>
+</div>
 
-<canvas id="game"></canvas>
+</div>
 
 <script>
 
-const canvas =
-document.getElementById("game");
+const app=document.getElementById('app');
 
-const ctx =
-canvas.getContext("2d");
+let userBalance=12580000;
 
-const DPR =
-Math.min(
-window.devicePixelRatio || 1,
-2
-);
+let cards=[
+{
+number:'9860123456782026',
+holder:'ABDULLOH',
+expire:'12/30',
+cvv:'777'
+}
+];
 
-let size =
-Math.min(innerWidth,innerHeight)*0.92;
+function maskCard(card){
+return card.substring(0,4)+' **** **** '+card.substring(12,16);
+}
 
-canvas.width = size * DPR;
-canvas.height = size * DPR;
+function updateBalance(){
+const el=document.querySelector('.balance');
+if(el){
+el.innerHTML=userBalance.toLocaleString('ru-RU')+" so'm";
+}
+}
 
-canvas.style.width = size+"px";
-canvas.style.height = size+"px";
+function isValidCard(card){
+return /^\d{16}$/.test(card);
+}
 
-ctx.scale(DPR,DPR);
+function isValidAbonent(a){
+return /^\d{5,15}$/.test(a);
+}
 
-const TILE = size/8;
+function active(btn){
 
-let board = [];
-let selected = null;
+document.querySelectorAll('.nav-item').forEach(el=>{
+el.classList.remove('active');
+});
 
-let turn = "white";
-let mode = "pvp";
-let playerColor = "white";
-
-let aiLevel = "easy";
-
-let wScore = 0;
-let bScore = 0;
-
-let gameOver = false;
-
-/* INIT */
-function init(){
-
-    board=[];
-
-    wScore=0;
-    bScore=0;
-
-    updateScore();
-
-    for(let y=0;y<8;y++){
-
-        for(let x=0;x<8;x++){
-
-            let piece=null;
-
-            if((x+y)%2===1){
-
-                if(y<3){
-
-                    piece={
-                        color:"black",
-                        king:false
-                    };
-
-                }
-
-                if(y>4){
-
-                    piece={
-                        color:"white",
-                        king:false
-                    };
-
-                }
-
-            }
-
-            board.push({
-                x,
-                y,
-                piece
-            });
-
-        }
-
-    }
+document.getElementById(btn).classList.add('active');
 
 }
 
-/* GET */
-function get(x,y){
+function showPage(page){
 
-    return board.find(
-    c=>c.x===x && c.y===y);
+if(page==="home"){
+
+active('homeBtn');
+
+app.innerHTML=`
+
+<div class="cards-scroll">
+
+${cards.map(card => `
+
+<div class="card single-card">
+
+<div class="balance-title">
+Asosiy balans
+</div>
+
+<div class="balance">
+${userBalance.toLocaleString('ru-RU')} so'm
+</div>
+
+<div class="card-number">
+${maskCard(card.number)}
+</div>
+
+<div class="bottom-card">
+
+<div>
+<p style="color:#888;font-size:13px;">
+CARD HOLDER
+</p>
+
+<h3 style="margin-top:5px;">
+${card.holder}
+</h3>
+</div>
+
+<div class="humo">
+HUMO
+</div>
+
+</div>
+
+</div>
+
+`).join('')}
+
+</div>
+
+<div class="actions">
+
+<div class="action" onclick="transferModal()">
+<img src="https://cdn-icons-png.flaticon.com/512/5610/5610944.png">
+<p>Transfer</p>
+</div>
+
+<div class="action" onclick="cardModal()">
+<img src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png">
+<p>Karta</p>
+</div>
+
+<div class="action" onclick="simpleModal('QR To‘lov','QR orqali muvaffaqiyatli to‘lov amalga oshirildi')">
+<img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png">
+<p>QR</p>
+</div>
+
+<div class="action" onclick="simpleModal('NFC','NFC to‘lov bajarildi')">
+<img src="https://cdn-icons-png.flaticon.com/512/483/483947.png">
+<p>NFC</p>
+</div>
+
+</div>
+
+<h2 class="section-title">
+Kommunal To'lovlar
+</h2>
+
+<div class="services">
+
+<div class="service" onclick="utilityModal('Elektr')">
+<img src="https://cdn-icons-png.flaticon.com/512/3103/3103446.png">
+<h3>Elektr</h3>
+<p>Elektr energiyasi</p>
+</div>
+
+<div class="service" onclick="utilityModal('Gaz')">
+<img src="https://cdn-icons-png.flaticon.com/512/2933/2933828.png">
+<h3>Gaz</h3>
+<p>Gaz xizmatlari</p>
+</div>
+
+<div class="service" onclick="utilityModal('Suv')">
+<img src="https://cdn-icons-png.flaticon.com/512/728/728093.png">
+<h3>Suv</h3>
+<p>Suv ta'minoti</p>
+</div>
+
+<div class="service" onclick="utilityModal('Internet')">
+<img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png">
+<h3>Internet</h3>
+<p>Internet providerlari</p>
+</div>
+
+</div>
+
+`;
 
 }
 
-/* MENU */
-function openColorMenu(m){
+if(page==="stats"){
 
-    mode=m;
+active('statsBtn');
 
-    document.getElementById(
-    "mainMenu").style.display="none";
+app.innerHTML=`
 
-    document.getElementById(
-    "colorMenu").style.display="flex";
+<h2 class="section-title">
+Statistika
+</h2>
 
-}
+<canvas id="chart" width="350" height="220"></canvas>
 
-/* OPEN AI LEVEL MENU */
-function openDifficultyMenu(){
+`;
 
-    mode="ai";
-
-    document.getElementById(
-    "mainMenu").style.display="none";
-
-    document.getElementById(
-    "difficultyMenu").style.display="flex";
+drawChart();
 
 }
 
-/* SET LEVEL */
-function setDifficulty(level){
+if(page==="wallet"){
 
-    aiLevel=level;
+active('walletBtn');
 
-    document.getElementById(
-    "difficultyMenu").style.display="none";
+let walletHTML='';
 
-    document.getElementById(
-    "colorMenu").style.display="flex";
+cards.forEach((card,index)=>{
 
-}
+walletHTML+=`
 
-/* START */
-function startGame(color){
+<div class="service">
 
-    playerColor=color;
+<img src="https://cdn-icons-png.flaticon.com/512/196/196578.png">
 
-    document.getElementById(
-    "menu").style.display="none";
+<h3>
+${index+1}-KARTA
+</h3>
 
-    init();
+<p style="margin-top:10px;">
+${maskCard(card.number)}
+</p>
 
-    turn="white";
+<p style="margin-top:8px;color:#888;font-size:12px;">
+Muddat: ${card.expire}
+</p>
 
-    document.getElementById(
-    "turn").innerText="White";
+<button onclick="deleteCard('${card.number}')"
+style="background:#ff4444;color:white;">
+Kartani o‘chirish
+</button>
 
-    if(
-        mode==="ai" &&
-        playerColor==="black"
-    ){
+</div>
 
-        setTimeout(aiMove,400);
-
-    }
-
-}
-
-/* SCORE */
-function updateScore(){
-
-    document.getElementById(
-    "wscore").innerText=wScore;
-
-    document.getElementById(
-    "bscore").innerText=bScore;
-
-}
-
-/* MOVES */
-function getMoves(cell){
-
-    let moves=[];
-
-    if(!cell.piece) return moves;
-
-    /* DAMKA */
-    if(cell.piece.king){
-
-        let dirs=[
-            [1,1],
-            [-1,1],
-            [1,-1],
-            [-1,-1]
-        ];
-
-        dirs.forEach(d=>{
-
-            let x=cell.x+d[0];
-            let y=cell.y+d[1];
-
-            let enemy=null;
-
-            while(true){
-
-                let n=get(x,y);
-
-                if(!n) break;
-
-                if(!n.piece){
-
-                    if(!enemy){
-
-                        moves.push({
-                            type:"move",
-                            cell:n
-                        });
-
-                    }else{
-
-                        moves.push({
-                            type:"jump",
-                            cell:n,
-                            kill:enemy
-                        });
-
-                    }
-
-                }else{
-
-                    if(
-                        n.piece.color===
-                        cell.piece.color
-                    ){
-                        break;
-                    }
-
-                    if(enemy) break;
-
-                    enemy=n;
-
-                }
-
-                x+=d[0];
-                y+=d[1];
-
-            }
-
-        });
-
-        return moves;
-
-    }
-
-    /* ODDIY SHASHKA */
-
-    /* OLDINGA YURADI */
-    let moveDirs=
-    cell.piece.color==="white"
-    ?
-    [[1,-1],[-1,-1]]
-    :
-    [[1,1],[-1,1]];
-
-    /* ORQAGA HAM URA OLADI */
-    let jumpDirs=[
-        [1,1],
-        [-1,1],
-        [1,-1],
-        [-1,-1]
-    ];
-
-    /* YURISH */
-    moveDirs.forEach(d=>{
-
-        let nx=cell.x+d[0];
-        let ny=cell.y+d[1];
-
-        let n=get(nx,ny);
-
-        if(n && !n.piece){
-
-            moves.push({
-                type:"move",
-                cell:n
-            });
-
-        }
-
-    });
-
-    /* URISH */
-    jumpDirs.forEach(d=>{
-
-        let nx=cell.x+d[0];
-        let ny=cell.y+d[1];
-
-        let jx=cell.x+d[0]*2;
-        let jy=cell.y+d[1]*2;
-
-        let n=get(nx,ny);
-        let j=get(jx,jy);
-
-        if(
-            n &&
-            n.piece &&
-            n.piece.color!==cell.piece.color
-        ){
-
-            if(j && !j.piece){
-
-                moves.push({
-                    type:"jump",
-                    cell:j,
-                    kill:n
-                });
-
-            }
-
-        }
-
-    });
-
-    return moves;
-
-}
-
-/* AI SCORE */
-function evaluateMove(p,m){
-
-    let score=0;
-
-    if(m.type==="jump"){
-        score+=50;
-    }
-
-    if(m.cell.y===0 || m.cell.y===7){
-        score+=25;
-    }
-
-    if(p.piece.king){
-        score+=20;
-    }
-
-    score+=Math.random()*5;
-
-    return score;
-
-}
-
-/* ANIMATE */
-function animate(fromCell,toCell,move,callback){
-
-    let piece=fromCell.piece;
-
-    let startX=fromCell.x;
-    let startY=fromCell.y;
-
-    let endX=toCell.x;
-    let endY=toCell.y;
-
-    let t=0;
-
-    piece.animX=startX;
-    piece.animY=startY;
-
-    function step(){
-
-        t += 0.075;
-
-        if(t>=1){
-
-            piece.animX=null;
-            piece.animY=null;
-
-            movePiece(
-                fromCell,
-                toCell,
-                move
-            );
-
-            callback();
-
-            return;
-
-        }
-
-        piece.animX=
-        startX+(endX-startX)*t;
-
-        piece.animY=
-        startY+(endY-startY)*t;
-
-        requestAnimationFrame(step);
-
-    }
-
-    step();
-
-}
-
-/* MOVE */
-function movePiece(from,to,move){
-
-    to.piece=from.piece;
-
-    from.piece=null;
-
-    if(move.type==="jump"){
-
-        move.kill.piece=null;
-
-        if(to.piece.color==="white"){
-
-            wScore++;
-
-        }else{
-
-            bScore++;
-
-        }
-
-        updateScore();
-
-    }
-
-    if(
-        to.y===0 &&
-        to.piece.color==="white"
-    ){
-
-        to.piece.king=true;
-
-    }
-
-    if(
-        to.y===7 &&
-        to.piece.color==="black"
-    ){
-
-        to.piece.king=true;
-
-    }
-
-}
-
-/* WIN */
-function checkWin(){
-
-    let white=
-    board.filter(c=>
-    c.piece &&
-    c.piece.color==="white").length;
-
-    let black=
-    board.filter(c=>
-    c.piece &&
-    c.piece.color==="black").length;
-
-    if(white===0){
-
-        showWin(
-        "⚫ BLACK WINS!");
-
-    }
-
-    if(black===0){
-
-        showWin(
-        "⚪ WHITE WINS!");
-
-    }
-
-}
-
-/* SHOW WIN */
-function showWin(text){
-
-    gameOver=true;
-
-    let win=
-    document.getElementById("win");
-
-    win.style.display="flex";
-
-    win.innerHTML=`
-    <div>${text}</div>
-
-    <button onclick="location.reload()">
-    🔄 Restart
-    </button>
-    `;
-
-}
-
-/* BOARD ROTATE */
-function boardX(x){
-
-    return playerColor==="black"
-    ? 7 - x
-    : x;
-
-}
-
-function boardY(y){
-
-    return playerColor==="black"
-    ? 7 - y
-    : y;
-
-}
-
-/* DRAW */
-function draw(){
-
-    for(let y=0;y<8;y++){
-
-        for(let x=0;x<8;x++){
-
-            let drawX = boardX(x);
-            let drawY = boardY(y);
-
-            let px=drawX*TILE;
-            let py=drawY*TILE;
-
-            let dark=(x+y)%2;
-
-            let grad=
-            ctx.createLinearGradient(
-            px,py,
-            px+TILE,
-            py+TILE);
-
-            if(dark){
-
-                grad.addColorStop(0,"#78350f");
-                grad.addColorStop(1,"#431407");
-
-            }else{
-
-                grad.addColorStop(0,"#fcd34d");
-                grad.addColorStop(1,"#f59e0b");
-
-            }
-
-            ctx.fillStyle=grad;
-
-            ctx.fillRect(
-            px,py,TILE,TILE);
-
-        }
-
-    }
-
-    if(selected){
-
-        getMoves(selected).forEach(m=>{
-
-            ctx.fillStyle=
-            "rgba(0,255,120,.35)";
-
-            ctx.fillRect(
-            boardX(m.cell.x)*TILE,
-            boardY(m.cell.y)*TILE,
-            TILE,
-            TILE);
-
-        });
-
-    }
-
-    board.forEach(c=>{
-
-        if(!c.piece) return;
-
-        let drawX =
-        boardX(c.piece.animX ?? c.x);
-
-        let drawY =
-        boardY(c.piece.animY ?? c.y);
-
-        let px=
-        drawX*TILE + TILE/2;
-
-        let py=
-        drawY*TILE + TILE/2;
-
-        ctx.beginPath();
-
-        ctx.fillStyle=
-        "rgba(0,0,0,.4)";
-
-        ctx.ellipse(
-        px,
-        py+8,
-        TILE*0.28,
-        TILE*0.12,
-        0,
-        0,
-        Math.PI*2);
-
-        ctx.fill();
-
-        let grad=
-        ctx.createRadialGradient(
-        px-TILE*.1,
-        py-TILE*.12,
-        5,
-        px,
-        py,
-        TILE*.45);
-
-        if(c.piece.color==="white"){
-
-            grad.addColorStop(0,"#fff");
-            grad.addColorStop(1,"#94a3b8");
-
-        }else{
-
-            grad.addColorStop(0,"#6b7280");
-            grad.addColorStop(1,"#000");
-
-        }
-
-        ctx.beginPath();
-
-        ctx.fillStyle=grad;
-
-        ctx.shadowBlur=25;
-
-        ctx.shadowColor=
-        c.piece.color==="white"
-        ?
-        "#fff"
-        :
-        "#000";
-
-        ctx.arc(
-        px,
-        py,
-        TILE*.33,
-        0,
-        Math.PI*2);
-
-        ctx.fill();
-
-        ctx.shadowBlur=0;
-
-        if(c.piece.king){
-
-            ctx.font=
-            TILE*.25+"px Arial";
-
-            ctx.fillText(
-            "👑",
-            px-TILE*.12,
-            py+TILE*.08);
-
-        }
-
-    });
-
-}
-
-/* CLICK */
-canvas.addEventListener("click",(e)=>{
-
-    if(gameOver) return;
-
-    if(
-        mode==="ai" &&
-        turn!==playerColor
-    ){
-        return;
-    }
-
-    let rect=
-    canvas.getBoundingClientRect();
-
-    let x=Math.floor(
-    (e.clientX-rect.left)/TILE);
-
-    let y=Math.floor(
-    (e.clientY-rect.top)/TILE);
-
-    if(playerColor==="black"){
-
-        x = 7 - x;
-        y = 7 - y;
-
-    }
-
-    let cell=get(x,y);
-
-    if(selected){
-
-        let moves=
-        getMoves(selected);
-
-        let move=
-        moves.find(
-        m=>m.cell===cell);
-
-        if(move){
-
-            animate(
-            selected,
-            cell,
-            move,
-            ()=>{
-
-                selected=null;
-
-                turn=
-                turn==="white"
-                ?
-                "black"
-                :
-                "white";
-
-                document.getElementById(
-                "turn").innerText=
-                turn.charAt(0)
-                .toUpperCase()
-                + turn.slice(1);
-
-                checkWin();
-
-                if(
-                    mode==="ai" &&
-                    turn!==playerColor
-                ){
-
-                    setTimeout(
-                    aiMove,
-                    350);
-
-                }
-
-            });
-
-        }else{
-
-            selected=null;
-
-        }
-
-    }else if(
-
-        cell &&
-        cell.piece &&
-        cell.piece.color===turn &&
-
-        (
-            mode==="pvp" ||
-            cell.piece.color===playerColor
-        )
-
-    ){
-
-        selected=cell;
-
-    }
+`;
 
 });
 
-/* AI */
-function aiMove(){
+app.innerHTML=`
 
-    if(gameOver) return;
+<h2 class="section-title">
+Wallet
+</h2>
 
-    let aiColor=
-    playerColor==="white"
-    ?
-    "black"
-    :
-    "white";
-
-    let pieces=
-    board.filter(c=>
-    c.piece &&
-    c.piece.color===aiColor);
-
-    let all=[];
-
-    pieces.forEach(p=>{
-
-        getMoves(p).forEach(m=>{
-
-            all.push({
-                p,
-                m,
-                score:evaluateMove(p,m)
-            });
-
-        });
-
-    });
-
-    if(all.length===0){
-
-        showWin(
-        playerColor==="white"
-        ?
-        "⚪ WHITE WINS!"
-        :
-        "⚫ BLACK WINS!");
-
-        return;
-
-    }
-
-    let chosen;
-
-    if(aiLevel==="easy"){
-
-        chosen=
-        all[
-            Math.floor(
-            Math.random()*all.length
-            )
-        ];
-
-    }
-
-    if(aiLevel==="hard"){
-
-        all.sort(
-        (a,b)=>b.score-a.score);
-
-        chosen=all[0];
-
-    }
-
-    if(aiLevel==="impossible"){
-
-        let jumps=
-        all.filter(
-        a=>a.m.type==="jump");
-
-        if(jumps.length){
-
-            jumps.sort(
-            (a,b)=>b.score-a.score);
-
-            chosen=jumps[0];
-
-        }else{
-
-            all.sort(
-            (a,b)=>b.score-a.score);
-
-            chosen=all[0];
-
-        }
-
-    }
-
-    animate(
-    chosen.p,
-    chosen.m.cell,
-    chosen.m,
-    ()=>{
-
-        turn=playerColor;
-
-        document.getElementById(
-        "turn").innerText=
-        turn.charAt(0)
-        .toUpperCase()
-        + turn.slice(1);
-
-        checkWin();
-
-    });
-
-}
-
-/* LOOP */
-function loop(){
-
-    ctx.clearRect(
-    0,0,size,size);
-
-    draw();
-
-    requestAnimationFrame(loop);
-
-}
-
-loop();
-/* ===== WENZOM GAMES INTRO ===== */
-
-const intro = document.createElement("div");
-
-intro.id = "intro";
-
-intro.innerHTML = `
-
-<div class="flash"></div>
-
-<div id="wenzomLogo">
-    WENZOM GAMES
+<div class="services">
+${walletHTML}
 </div>
 
-<div id="byText">
-    by Hayitboy
+<button onclick="cardModal()">
++ Karta qo'shish
+</button>
+
+`;
+
+}
+
+if(page==="profile"){
+
+active('profileBtn');
+
+app.innerHTML=`
+
+<h2 class="section-title">
+Profil
+</h2>
+
+<div class="card">
+
+<h2>ABDULLOH</h2>
+
+<p style="margin-top:10px;color:#aaa;">
+Premium foydalanuvchi
+</p>
+
+<p style="margin-top:20px;">
+Cashback:
+<span style="color:#FFD700;">
+1 250 000 so'm
+</span>
+</p>
+
+<button onclick="simpleModal('Profil','Profil yangilandi')">
+Profilni tahrirlash
+</button>
+
 </div>
 
 `;
 
-document.body.appendChild(intro);
-
-/* ===== STYLE ===== */
-
-const introStyle =
-document.createElement("style");
-
-introStyle.innerHTML = `
-
-#intro{
-    position:fixed;
-    inset:0;
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    overflow:hidden;
-    z-index:999999;
 }
 
-#wenzomLogo{
-
-    font-size:72px;
-    font-weight:bold;
-
-    color:white;
-
-    letter-spacing:10px;
-
-    opacity:0;
-
-    transform:scale(.5);
-
-    text-shadow:
-    0 0 10px #fff,
-    0 0 30px #f59e0b,
-    0 0 60px #ef4444;
-
-    animation:
-    wenzomAnim 3.5s ease forwards;
+updateBalance();
 
 }
 
-#byText{
+function openModal(title,body){
 
-    margin-top:18px;
+document.getElementById('modal').style.display='flex';
 
-    color:#cbd5e1;
+document.getElementById('modalTitle').innerHTML=title;
 
-    font-size:22px;
-
-    letter-spacing:4px;
-
-    opacity:0;
-
-    animation:
-    byAnim 3.5s ease forwards;
+document.getElementById('modalBody').innerHTML=body;
 
 }
 
-.flash{
+function closeModal(){
+document.getElementById('modal').style.display='none';
+}
 
-    position:absolute;
+function simpleModal(title,text){
 
-    width:320px;
-    height:320px;
+openModal(title,`
 
-    border-radius:50%;
+<div class="receipt">
 
-    background:
-    radial-gradient(
-        circle,
-        rgba(255,255,255,.9),
-        rgba(255,255,255,0)
-    );
+<h3>${title}</h3>
 
-    animation:
-    flashAnim 2.8s ease-out forwards;
+<p style="margin-top:15px;">
+${text}
+</p>
+
+</div>
+
+`);
 
 }
 
-@keyframes wenzomAnim{
+function transferModal(){
 
-    0%{
-        opacity:0;
-        transform:scale(.3);
-        filter:blur(15px);
-    }
+openModal('Pul O‘tkazish',`
 
-    20%{
-        opacity:1;
-        transform:scale(1);
-        filter:blur(0);
-    }
+<input type="text" id="fromCard"
+placeholder="Jo'natuvchi karta">
 
-    70%{
-        opacity:1;
-        transform:scale(1.05);
-    }
+<input type="text" id="toCard"
+placeholder="Qabul qiluvchi karta">
 
-    100%{
-        opacity:0;
-        transform:scale(1.2);
-        filter:blur(12px);
-    }
+<input type="number" id="amount"
+placeholder="Summa">
+
+<button onclick="makeTransfer()">
+O'tkazish
+</button>
+
+`);
 
 }
 
-@keyframes byAnim{
+function makeTransfer(){
 
-    0%{
-        opacity:0;
-        transform:translateY(25px);
-    }
+let from=document.getElementById('fromCard').value;
+let to=document.getElementById('toCard').value;
+let amount=parseInt(document.getElementById('amount').value);
 
-    35%{
-        opacity:1;
-        transform:translateY(0);
-    }
+if(!isValidCard(from)){
+simpleModal('Xato','Jo‘natuvchi karta noto‘g‘ri');
+return;
+}
 
-    75%{
-        opacity:1;
-    }
+if(!isValidCard(to)){
+simpleModal('Xato','Qabul qiluvchi karta noto‘g‘ri');
+return;
+}
 
-    100%{
-        opacity:0;
-    }
+if(amount<=0){
+simpleModal('Xato','Summa noto‘g‘ri');
+return;
+}
+
+let fee=Math.floor(amount*0.01);
+
+let total=amount+fee;
+
+if(total>userBalance){
+simpleModal('Xato','Kartada mablag‘ yetarli emas');
+return;
+}
+
+userBalance-=total;
+
+let date=new Date().toLocaleString();
+
+openModal('Transfer Chek',`
+
+<div class="receipt">
+
+<h3>HUMO PAY CHEK</h3>
+
+<div class="receipt-row">
+<span>Sana:</span>
+<span>${date}</span>
+</div>
+
+<div class="receipt-row">
+<span>Jo'natuvchi:</span>
+<span>${maskCard(from)}</span>
+</div>
+
+<div class="receipt-row">
+<span>Qabul qiluvchi:</span>
+<span>${maskCard(to)}</span>
+</div>
+
+<div class="receipt-row">
+<span>Summa:</span>
+<span>${amount.toLocaleString()} so'm</span>
+</div>
+
+<div class="receipt-row">
+<span>Komissiya:</span>
+<span>${fee.toLocaleString()} so'm</span>
+</div>
+
+<hr style="margin:15px 0;">
+
+<div class="receipt-row">
+<b>Umumiy:</b>
+<b>${total.toLocaleString()} so'm</b>
+</div>
+
+<div class="receipt-row">
+<b>Qoldiq:</b>
+<b>${userBalance.toLocaleString()} so'm</b>
+</div>
+
+</div>
+
+`);
+
+showPage('home');
 
 }
 
-@keyframes flashAnim{
+function utilityModal(type){
 
-    0%{
-        transform:scale(0);
-        opacity:0;
-    }
+openModal(type+' To‘lovi',`
 
-    20%{
-        opacity:1;
-    }
+<input type="text" id="abonent"
+placeholder="Abonent raqami">
 
-    100%{
-        transform:scale(7);
-        opacity:0;
-    }
+<input type="number" id="payAmount"
+placeholder="To'lov summasi">
 
-}
+<button onclick="payUtility('${type}')">
+To'lash
+</button>
 
-@media(max-width:768px){
-
-    #wenzomLogo{
-
-        font-size:42px;
-
-        letter-spacing:5px;
-
-        text-align:center;
-
-        padding:20px;
-
-    }
-
-    #byText{
-
-        font-size:16px;
-
-    }
+`);
 
 }
 
-`;
+function payUtility(type){
 
-document.head.appendChild(
-introStyle
+let abonent=document.getElementById('abonent').value;
+
+let amount=parseInt(
+document.getElementById('payAmount').value
 );
 
-/* ===== REMOVE INTRO ===== */
+if(!isValidAbonent(abonent)){
+simpleModal('Xato','Abonent raqami noto‘g‘ri');
+return;
+}
+
+if(amount<=0){
+simpleModal('Xato','Summa noto‘g‘ri');
+return;
+}
+
+if(amount>userBalance){
+simpleModal('Xato','Kartada mablag‘ yetarli emas');
+return;
+}
+
+userBalance-=amount;
+
+let date=new Date().toLocaleString();
+
+openModal(type+' Chek',`
+
+<div class="receipt">
+
+<h3>${type.toUpperCase()} CHEK</h3>
+
+<div class="receipt-row">
+<span>Sana:</span>
+<span>${date}</span>
+</div>
+
+<div class="receipt-row">
+<span>Abonent:</span>
+<span>${abonent}</span>
+</div>
+
+<div class="receipt-row">
+<span>Xizmat:</span>
+<span>${type}</span>
+</div>
+
+<div class="receipt-row">
+<span>To'lov:</span>
+<span>${amount.toLocaleString()} so'm</span>
+</div>
+
+<hr style="margin:15px 0;">
+
+<div class="receipt-row">
+<b>Qoldiq:</b>
+<b>${userBalance.toLocaleString()} so'm</b>
+</div>
+
+</div>
+
+`);
+
+showPage('home');
+
+}
+
+function cardModal(){
+
+openModal('Karta Qo‘shish',`
+
+<input type="text" id="newCard"
+placeholder="16 xonali karta">
+
+<input type="text" id="newExpire"
+placeholder="MM/YY">
+
+<input type="password" id="newCVV"
+placeholder="CVV">
+
+<button onclick="saveCard()">
+Qo'shish
+</button>
+
+`);
+
+}
+
+function saveCard(){
+
+let card=document.getElementById('newCard').value.trim();
+
+let expire=document.getElementById('newExpire').value.trim();
+
+let cvv=document.getElementById('newCVV').value.trim();
+
+if(!/^\d{16}$/.test(card)){
+simpleModal('Xato','Karta 16 xonali bo‘lishi kerak');
+return;
+}
+
+if(!/^\d{2}\/\d{2}$/.test(expire)){
+simpleModal('Xato','MM/YY format kiriting');
+return;
+}
+
+if(!/^\d{3}$/.test(cvv)){
+simpleModal('Xato','CVV 3 xonali bo‘lishi kerak');
+return;
+}
+
+let alreadyExists = cards.some(c => c.number === card);
+
+if(alreadyExists){
+simpleModal('Xato','Bu karta oldin qo‘shilgan');
+return;
+}
+
+cards.push({
+number:card,
+expire:expire,
+cvv:cvv,
+holder:'ABDULLOH'
+});
+
+closeModal();
+
+showPage('wallet');
 
 setTimeout(()=>{
 
-    intro.style.transition =
-    "1s";
+simpleModal(
+'Karta Qo‘shildi',
+maskCard(card)
+);
 
-    intro.style.opacity =
-    "0";
+},300);
 
-    setTimeout(()=>{
+}
 
-        intro.remove();
+function deleteCard(number){
 
-    },1000);
+cards = cards.filter(
+card=>card.number!==number
+);
 
-},3500);
+showPage('wallet');
 
-/* ===== END ===== */
+simpleModal(
+'Karta O‘chirildi',
+'Karta muvaffaqiyatli o‘chirildi'
+);
+
+}
+
+function drawChart(){
+
+const canvas=document.getElementById('chart');
+
+if(!canvas) return;
+
+const ctx=canvas.getContext('2d');
+
+const values=[120,180,100,160,90,200];
+
+const colors=['#FFD700','#caa300','#ffcc00','#f5b800'];
+
+for(let i=0;i<values.length;i++){
+
+ctx.fillStyle=colors[i%colors.length];
+
+ctx.fillRect(
+i*55+20,
+220-values[i],
+35,
+values[i]
+);
+
+}
+
+}
+
+showPage('home');
+
 </script>
 
 </body>
