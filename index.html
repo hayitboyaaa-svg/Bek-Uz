@@ -2,522 +2,297 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HUMO PAY v2.0</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOVE AI</title>
 
 <style>
-
-:root{
---gold:#FFD700;
---gold2:#B8860B;
---bg:#050505;
---card:#111;
---text:#fff;
---muted:#999;
---danger:#ff5577;
---success:#00d084;
-}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
--webkit-tap-highlight-color:transparent;
+font-family:Arial;
 }
 
 body{
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-}
-
-.hidden{
-display:none!important;
-}
-
-button{
-border:none;
-cursor:pointer;
-}
-
-input{
-outline:none;
-border:none;
-}
-
-.splash{
-position:fixed;
-inset:0;
-background:#000;
+background:linear-gradient(135deg,#090909,#171717,#2a0d18);
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-z-index:99999;
-}
-
-.logo-big{
-font-size:50px;
-font-weight:800;
-background:linear-gradient(90deg,var(--gold),var(--gold2));
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.loading{
-width:240px;
-height:7px;
-background:#222;
-border-radius:999px;
-margin-top:25px;
 overflow:hidden;
-}
-
-.loading span{
-display:block;
-height:100%;
-width:0%;
-background:linear-gradient(90deg,var(--gold),var(--gold2));
-animation:load 2.5s linear forwards;
-}
-
-@keyframes load{
-to{
-width:100%;
-}
-}
-
-.auth-page{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
-
-.auth-box{
-width:100%;
-max-width:420px;
-background:#111;
-border-radius:30px;
-padding:25px;
-border:1px solid rgba(255,215,0,.15);
-box-shadow:0 0 30px rgba(255,215,0,.08);
-}
-
-.logo{
-font-size:34px;
-font-weight:800;
-text-align:center;
-margin-bottom:25px;
-background:linear-gradient(90deg,var(--gold),var(--gold2));
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-.auth-title{
-font-size:24px;
-font-weight:700;
-margin-bottom:20px;
-}
-
-.input{
-width:100%;
-padding:16px;
-background:#1b1b1b;
 color:white;
-border-radius:16px;
-margin-top:12px;
-}
-
-.gold-btn{
-width:100%;
-padding:16px;
-margin-top:15px;
-border-radius:16px;
-font-weight:700;
-background:linear-gradient(90deg,var(--gold),var(--gold2));
-color:black;
-}
-
-.switch{
-margin-top:15px;
-text-align:center;
-color:#aaa;
-cursor:pointer;
-}
-
-.app{
-display:none;
 }
 
 .container{
-max-width:430px;
-margin:auto;
+width:100%;
+max-width:340px;
+background:#141414;
 padding:20px;
-padding-bottom:120px;
-}
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.profile{
-width:50px;
-height:50px;
-border-radius:50%;
-background:linear-gradient(135deg,var(--gold),var(--gold2));
-display:flex;
-justify-content:center;
-align-items:center;
-font-weight:800;
-color:black;
-}
-
-.card-slider{
-display:flex;
-overflow-x:auto;
-gap:15px;
-margin-top:25px;
-scrollbar-width:none;
-}
-
-.card-slider::-webkit-scrollbar{
-display:none;
-}
-
-.bank-card{
-min-width:340px;
-background:linear-gradient(135deg,#111,#1d1d1d);
-padding:25px;
 border-radius:30px;
-position:relative;
-overflow:hidden;
-border:1px solid rgba(255,215,0,.15);
+border:1px solid rgba(255,46,99,0.25);
+box-shadow:0 0 40px rgba(255,46,99,0.12);
 }
 
-.bank-card::before{
-content:'';
-position:absolute;
-width:220px;
-height:220px;
-background:radial-gradient(circle,rgba(255,215,0,.15),transparent);
-top:-80px;
-right:-80px;
+.screen{
+display:none;
+animation:fade .4s;
 }
 
-.balance-title{
-font-size:13px;
-color:#aaa;
+.active{
+display:block;
 }
 
-.balance{
-font-size:38px;
-font-weight:800;
-margin-top:8px;
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-.card-number{
-margin-top:30px;
-letter-spacing:4px;
-font-size:18px;
-color:#ddd;
-}
-
-.card-bottom{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:20px;
-}
-
-.humo{
-font-size:24px;
-font-weight:800;
-color:var(--gold);
-}
-
-.actions{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-margin-top:25px;
-}
-
-.action{
-background:#111;
-padding:16px 10px;
-border-radius:20px;
+.logo{
 text-align:center;
+font-size:30px;
+font-weight:bold;
+margin-bottom:22px;
+background:linear-gradient(135deg,#ff2e63,#ff7da2);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.gender{
+display:flex;
+gap:10px;
+}
+
+.gender button{
+flex:1;
+}
+
+button{
+width:100%;
+padding:13px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#ff2e63,#ff004c);
+color:white;
+font-size:14px;
+font-weight:bold;
 cursor:pointer;
-transition:.25s;
-border:1px solid rgba(255,215,0,.08);
+transition:.3s;
+margin-top:10px;
 }
 
-.action:hover{
-transform:translateY(-4px);
-border-color:var(--gold);
-}
-
-.action-icon{
-font-size:28px;
-}
-
-.action p{
-font-size:12px;
-margin-top:8px;
-}
-
-.section-title{
-margin-top:30px;
-margin-bottom:15px;
-font-size:22px;
-font-weight:700;
-}
-
-.services{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-}
-
-.service{
-background:#111;
-padding:18px;
-border-radius:22px;
-border:1px solid rgba(255,215,0,.08);
-transition:.25s;
-}
-
-.service:hover{
+button:hover{
 transform:scale(1.02);
 }
 
-.service-icon{
-font-size:36px;
-}
-
-.service h3{
-margin-top:12px;
-}
-
-.service p{
-margin-top:6px;
-font-size:13px;
-color:#999;
-}
-
-.bottom-nav{
-position:fixed;
-left:0;
-bottom:0;
+input,
+select,
+textarea{
 width:100%;
-background:#090909;
+padding:13px;
+margin-bottom:12px;
+border:none;
+border-radius:16px;
+background:#232323;
+color:white;
+font-size:14px;
+outline:none;
+}
+
+textarea{
+height:90px;
+resize:none;
+}
+
+.loading{
+width:75px;
+height:75px;
+border:5px solid #333;
+border-top:5px solid #ff2e63;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin:25px auto;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+.result-box{
+background:#1d1d1d;
+padding:18px;
+border-radius:24px;
+border:1px solid rgba(255,46,99,0.18);
+}
+
+.graph-wrap{
 display:flex;
-justify-content:space-around;
-padding:14px 0;
-border-top:1px solid rgba(255,215,0,.1);
-z-index:999;
+justify-content:center;
+margin-top:10px;
+margin-bottom:20px;
 }
 
-.nav{
-text-align:center;
-font-size:13px;
-color:#888;
-cursor:pointer;
-}
-
-.nav.active{
-color:var(--gold);
-}
-
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.85);
-display:none;
+.circle{
+width:140px;
+height:140px;
+border-radius:50%;
+background:
+conic-gradient(
+#ff2e63 0deg,
+#ff2e63 calc(var(--percent) * 3.6deg),
+#2f2f2f calc(var(--percent) * 3.6deg),
+#2f2f2f 360deg
+);
+display:flex;
 justify-content:center;
 align-items:center;
-padding:20px;
-z-index:9999;
+position:relative;
+box-shadow:0 0 25px rgba(255,46,99,0.2);
 }
 
-.modal-content{
-width:100%;
-max-width:380px;
-background:#111;
-padding:25px;
-border-radius:30px;
-border:1px solid rgba(255,215,0,.15);
+.circle::before{
+content:"";
+position:absolute;
+width:102px;
+height:102px;
+background:#141414;
+border-radius:50%;
 }
 
-.modal-input{
-width:100%;
-padding:15px;
-background:#1d1d1d;
-border-radius:14px;
-margin-top:12px;
-color:white;
+.percent{
+position:relative;
+z-index:2;
+font-size:28px;
+font-weight:bold;
+color:#ff2e63;
 }
 
-.close-btn{
-background:#222;
-color:white;
+.match-text{
+position:relative;
+z-index:2;
+font-size:12px;
+margin-top:2px;
+color:#bbb;
+}
+
+.comment{
+background:#252525;
+padding:14px;
+border-radius:18px;
+font-size:14px;
+line-height:1.5;
+color:#ddd;
+margin-top:15px;
+}
+
+.nick-box{
+margin-top:18px;
+padding:14px;
+background:#202020;
+border-radius:16px;
+text-align:center;
+border:1px solid rgba(255,46,99,0.15);
+}
+
+.nick-title{
+font-size:12px;
+color:#999;
+margin-bottom:8px;
+}
+
+.username{
+font-size:22px;
+font-weight:bold;
+color:#ff4d7d;
+}
+
+.loading-text{
+text-align:center;
+color:#ff4d7d;
 margin-top:10px;
 }
 
 </style>
 </head>
+
 <body>
-
-<div class="splash" id="splash">
-<div class="logo-big">HUMO PAY</div>
-<div class="loading">
-<span></span>
-</div>
-</div>
-
-<div class="auth-page" id="authPage">
-
-<div class="auth-box">
-
-<div class="logo">HUMO PAY</div>
-
-<div id="loginBox">
-
-<div class="auth-title">
-Kirish
-</div>
-
-<input
-class="input"
-id="loginUser"
-placeholder="Login">
-
-<input
-type="password"
-class="input"
-id="loginPass"
-placeholder="Parol">
-
-<button
-class="gold-btn"
-onclick="login()">
-Kirish
-</button>
-
-<div
-class="switch"
-onclick="showRegister()">
-Akkaunt yo'qmi? Ro'yxatdan o'tish
-</div>
-
-</div>
-
-<div
-id="registerBox"
-class="hidden">
-
-<div class="auth-title">
-Ro'yxatdan o'tish
-</div>
-
-<input
-class="input"
-id="regName"
-placeholder="Ism">
-
-<input
-class="input"
-id="regUser"
-placeholder="Login">
-
-<input
-type="password"
-class="input"
-id="regPass"
-placeholder="Parol">
-
-<button
-class="gold-btn"
-onclick="registerUser()">
-Akkaunt yaratish
-</button>
-
-<div
-class="switch"
-onclick="showLogin()">
-Akkaunt mavjudmi? Kirish
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="app" id="app">
 
 <div class="container">
 
-<div class="topbar">
+<div class="screen active" id="s1">
 
 <div class="logo">
-HUMO PAY
+LOVE AI
 </div>
 
-<div class="profile" id="avatar">
-A
-</div>
-
-</div>
-
-<div id="pageContent"></div>
-
-</div>
-
-<div class="bottom-nav">
-
-<div class="nav active" id="homeBtn">
-🏠<br>Home
-</div>
-
-<div class="nav" id="walletBtn">
-💳<br>Wallet
-</div>
-
-<div class="nav" id="statsBtn">
-📊<br>Stats
-</div>
-
-<div class="nav" id="profileBtn">
-👤<br>Profil
+<div class="gender">
+<button onclick="chooseGender('Erkak')">Men O‘g‘ilman</button>
+<button onclick="chooseGender('Qiz')">Men Qizman</button>
 </div>
 
 </div>
 
+<div class="screen" id="s2">
+
+<div class="logo">Ma'lumot</div>
+
+<select id="region">
+<option>Toshkent</option>
+<option>Toshkent Viloyati</option>
+<option>Samarqand</option>
+<option>Buxoro</option>
+<option>Andijon</option>
+<option>Namangan</option>
+<option>Farg‘ona</option>
+<option>Xorazm</option>
+<option>Navoiy</option>
+<option>Qashqadaryo</option>
+<option>Surxondaryo</option>
+<option>Jizzax</option>
+<option>Sirdaryo</option>
+<option>Qoraqalpog‘iston</option>
+</select>
+
+<input type="number" id="age" placeholder="Yosh">
+<input type="number" id="height" placeholder="Bo‘y (sm)">
+<input type="number" id="kg" placeholder="Vazn (kg)">
+<input type="number" id="income" placeholder="Daromad ($)">
+<input type="text" id="job" placeholder="Soha">
+
+<button onclick="nextPage()">Keyingi</button>
+
 </div>
 
-<div class="modal" id="modal">
+<div class="screen" id="s3">
 
-<div class="modal-content">
+<div class="logo">O‘zingiz Haqida</div>
 
-<h2 id="modalTitle">
-Modal
-</h2>
+<textarea id="about" placeholder="O‘zingiz haqingizda yozing..."></textarea>
 
-<div id="modalBody"></div>
+<button onclick="startAI()">AI Analiz</button>
 
-<button
-class="gold-btn close-btn"
-onclick="closeModal()">
-Yopish
-</button>
+</div>
+
+<div class="screen" id="s4">
+
+<div class="loading"></div>
+<div class="loading-text">AI Hisoblamoqda...</div>
+
+</div>
+
+<div class="screen" id="s5">
+
+<div class="result-box">
+<div id="result"></div>
+</div>
 
 </div>
 
@@ -525,1201 +300,260 @@ Yopish
 
 <script>
 
-let currentUser=null;
+let gender = "";
 
-let appData={
-balance:15000000,
-cashback:0,
-cards:[],
-history:[]
-};
+const girls = [
 
-function showRegister(){
-document
-.getElementById('loginBox')
-.classList.add('hidden');
+{ username: "ergasheva01011" },
+{ username: "_.jasmina.01" },
+{ username: "rux1w" },
+{ username: "assxzw_l7" },
+{ username: "mpry.f" },
+{ username: "za.ryaa01" },
+{ username: "shaxoutt" },
+{ username: "17.27_d" },
+{ username: "_a1dunazarova_o11" },
+{ username: "bax__on" },
+{ username: "reymbergenovaa_j" },
+{ username: "rajabbo_yeva" },
+{ username: "sabrvva_" },
+{ username: "_melantha_0.15" },
+{ username: "_yorkulov1am_" },
+{ username: "lsu.1a" },
+{ username: "its.lilac.v" },
+{ username: "ozoda.jurabekovna" },
+{ username: "yvlme.k" },
+{ username: "dark_s1111de" },
+{ username: "00777.sh" },
+{ username: "its.lilac.v" },
+{ username: "me.star75" },
+{ username: "ynvxne" },
 
-document
-.getElementById('registerBox')
-.classList.remove('hidden');
+{ username: "mariya__a" },
+{ username: "lizaewu" },
+{ username: "sevara_nazarhkhan" },
+{ username: "obsessionyena_17" },
+{ username: "1rosh_7r" },
+{ username: "k0mola" },
+{ username: "akhmedova_samina_" },
+{ username: "yu_shuxi" },
+{ username: "__leeyona" },
+{ username: "_farxadovvnaa_7" },
+
+{ username: "mkhsdv.na" },
+{ username: "alsa_fiii" },
+{ username: "assxzw_l7" },
+{ username: "caffeiinee_wr" },
+{ username: "csiiiixdh" },
+{ username: "_mrzvyna_" },
+{ username: "y.sejinn" },
+{ username: "bfarangiiiz" },
+{ username: "shermetova_89" },
+{ username: "_a1dunazarova_o11" },
+
+{ username: "kxsanvna_7" },
+{ username: "obsessionyena_17" },
+{ username: "kadyrova7._" },
+{ username: "1rosh_7r" },
+{ username: "14.ezozaquvondiqovna" },
+{ username: "oydiw_me0525" },
+{ username: "toshmedovaa" },
+{ username: "bhdrvna_o8" },
+{ username: "_mrzvyna_" },
+{ username: "kadyrova7._" }
+
+];
+
+
+
+const boys = [
+
+{ username: "mamirov_abdulloh_" },
+{ username: "caezely" },
+{ username: "_raxat_fx_" },
+{ username: "assxzw_l7" },
+{ username: "cryptyy.x" },
+{ username: "xoliqulov_.08" },
+{ username: "army_o1.o2" },
+{ username: "__leeyona" },
+{ username: "otabekovic_LL7" },
+{ username: "baxtiyorvc_." },
+
+{ username: "abdul.layev1c10" },
+{ username: "rmznvv7" },
+{ username: "jo5one" },
+{ username: "nurillayev_as" },
+{ username: "komiljonov.editz" },
+{ username: "xayitov__0" },
+{ username: "shee1kh.o" },
+{ username: "xt_sirojiddin" },
+{ username: "suyunov_uz_" },
+{ username: "funicbek" },
+
+{ username: "mal1kovc_" },
+{ username: "beg1anovv" },
+{ username: "msyv_ii" },
+{ username: "zoh1d_o1_" },
+{ username: "xcwsoe" },
+{ username: "ripnpc" },
+{ username: "nizomivich_17" },
+{ username: "islomovl11" },
+{ username: "egamberganv.u" },
+{ username: "baxtiyorvc_." },
+
+
+];
+
+
+
+function chooseGender(g){
+gender = g;
+document.getElementById('s1').classList.remove('active');
+document.getElementById('s2').classList.add('active');
 }
 
-function showLogin(){
-document
-.getElementById('registerBox')
-.classList.add('hidden');
-
-document
-.getElementById('loginBox')
-.classList.remove('hidden');
+function nextPage(){
+document.getElementById('s2').classList.remove('active');
+document.getElementById('s3').classList.add('active');
 }
 
-function save(){
-localStorage.setItem(
-'humo_v2_user',
-JSON.stringify(currentUser)
-);
-
-localStorage.setItem(
-'humo_v2_data',
-JSON.stringify(appData)
-);
+function startAI(){
+document.getElementById('s3').classList.remove('active');
+document.getElementById('s4').classList.add('active');
+setTimeout(showResult,2500);
 }
 
-setTimeout(()=>{
-document.getElementById('splash').style.display='none';
-},2500);
-function registerUser(){
+function showResult(){
 
-let name=document.getElementById('regName').value.trim();
-let user=document.getElementById('regUser').value.trim();
-let pass=document.getElementById('regPass').value.trim();
+let age = parseInt(document.getElementById('age').value) || 0;
+let height = parseInt(document.getElementById('height').value) || 0;
+let kg = parseInt(document.getElementById('kg').value) || 0;
+let income = parseInt(document.getElementById('income').value) || 0;
+let about = document.getElementById('about').value;
+let job = document.getElementById('job').value.toLowerCase();
 
-if(!name || !user || !pass){
-alert("Barcha maydonlarni to'ldiring");
-return;
+let score = 0;
+
+/* REALISTIC AI */
+
+if(income <= 100){
+score += 1;
+}
+else if(income <= 300){
+score += 3;
+}
+else if(income <= 500){
+score += 5;
+}
+else if(income <= 1000){
+score += 8;
+}
+else if(income <= 2000){
+score += 14;
+}
+else if(income <= 5000){
+score += 22;
+}
+else{
+score += 30;
 }
 
-currentUser={
-name:name,
-username:user,
-password:pass
-};
-
-appData={
-balance:15000000,
-cashback:0,
-cards:[
-{
-number:"9860123456782026",
-holder:name.toUpperCase(),
-expire:"12/30",
-cvv:"777"
+if(height >= 185){
+score += 8;
 }
-],
-history:[]
-};
-
-save();
-
-alert("Akkaunt yaratildi");
-openApp();
+else if(height >= 175){
+score += 5;
+}
+else if(height >= 165){
+score += 2;
 }
 
-function login(){
-
-let user=document.getElementById('loginUser').value.trim();
-let pass=document.getElementById('loginPass').value.trim();
-
-let savedUser=
-JSON.parse(
-localStorage.getItem('humo_v2_user')
-);
-
-let savedData=
-JSON.parse(
-localStorage.getItem('humo_v2_data')
-);
-
-if(!savedUser){
-alert("Akkaunt topilmadi");
-return;
+if(kg >= 60 && kg <= 85){
+score += 5;
 }
 
-if(
-savedUser.username!==user ||
-savedUser.password!==pass
-){
-alert("Login yoki parol noto'g'ri");
-return;
+if(age >= 18 && age <= 27){
+score += 5;
 }
 
-currentUser=savedUser;
-appData=savedData;
-
-openApp();
+if(job.includes('it') || job.includes('biznes')){
+score += 8;
 }
 
-function openApp(){
-
-document.getElementById('authPage').style.display='none';
-
-document.getElementById('app').style.display='block';
-
-document.getElementById('avatar').innerHTML=
-currentUser.name.charAt(0).toUpperCase();
-
-showHome();
+if(about.length > 150){
+score += 18;
+}
+else if(about.length > 80){
+score += 10;
+}
+else if(about.length > 30){
+score += 4;
+}
+else{
+score += 1;
 }
 
-function setActive(id){
-
-document.querySelectorAll('.nav')
-.forEach(nav=>{
-nav.classList.remove('active');
-});
-
-document.getElementById(id)
-.classList.add('active');
+if(score > 58){
+score = 58;
 }
 
-function maskCard(card){
+let advice = "";
 
-return card.substring(0,4)
-+" **** **** "
-+card.substring(12,16);
-
+if(income < 500 && height < 170){
+advice = "Moliyaviy rivojlanish va jismoniy rivojga e'tibor bersangiz natija yaxshilanadi ❤️";
+}
+else if(income < 1000){
+advice = "Daromadni oshirish ustida ishlasangiz moslik yuqorilaydi 💕";
+}
+else if(about.length < 25){
+advice = "O‘zingiz haqingizda ko‘proq yozsangiz AI aniqroq analiz qiladi ✨";
+}
+else{
+advice = "Profilingiz yaxshi taassurot qoldirdi ❤️";
 }
 
-function addHistory(type,amount){
+let pool;
 
-appData.history.unshift({
-
-type:type,
-amount:amount,
-date:new Date().toLocaleString()
-
-});
-
-save();
+if(gender == 'Erkak'){
+pool = girls;
+}else{
+pool = boys;
 }
 
-function showHome(){
+let match = pool[Math.floor(Math.random()*pool.length)];
 
-setActive('homeBtn');
+document.getElementById('s4').classList.remove('active');
+document.getElementById('s5').classList.add('active');
 
-document.getElementById('pageContent').innerHTML=`
+document.getElementById('result').innerHTML = `
 
-<div class="card-slider">
-
-${appData.cards.map(card=>`
-
-<div class="bank-card">
-
-<div class="balance-title">
-Asosiy balans
+<div class="graph-wrap">
+<div class="circle" style="--percent:${score}">
+<div style="position:relative;z-index:2;text-align:center;">
+<div class="percent">${score}%</div>
+<div class="match-text">Moslik</div>
+</div>
+</div>
 </div>
 
-<div class="balance">
-${appData.balance.toLocaleString()} so'm
+<div class="comment">
+🧠 ${advice}
 </div>
 
-<div class="card-number">
-${maskCard(card.number)}
+<div class="nick-box">
+<div class="nick-title">AI Tavsiya Qilgan Instagram</div>
+<div class="username">@${match.username}</div>
 </div>
 
-<div class="card-bottom">
-
-<div>
-<p style="color:#888;font-size:12px;">
-CARD HOLDER
-</p>
-
-<h3>
-${card.holder}
-</h3>
-</div>
-
-<div class="humo">
-HUMO
-</div>
-
-</div>
-
-</div>
-
-`).join('')}
-
-</div>
-
-<div class="actions">
-
-<div class="action"
-onclick="transferModal()">
-<div class="action-icon">💸</div>
-<p>Transfer</p>
-</div>
-
-<div class="action"
-onclick="cardModal()">
-<div class="action-icon">💳</div>
-<p>Karta</p>
-</div>
-
-<div class="action"
-onclick="simpleInfo('QR','QR to‘lov demo')">
-<div class="action-icon">📱</div>
-<p>QR</p>
-</div>
-
-<div class="action"
-onclick="simpleInfo('NFC','NFC demo')">
-<div class="action-icon">📡</div>
-<p>NFC</p>
-</div>
-
-</div>
-
-<h2 class="section-title">
-Xizmatlar
-</h2>
-
-<div class="services">
-
-<div class="service"
-onclick="utilityModal('Elektr')">
-
-<div class="service-icon">⚡</div>
-
-<h3>Elektr</h3>
-
-<p>
-Elektr energiyasi
-</p>
-
-</div>
-
-<div class="service"
-onclick="utilityModal('Gaz')">
-
-<div class="service-icon">🔥</div>
-
-<h3>Gaz</h3>
-
-<p>
-Gaz ta'minoti
-</p>
-
-</div>
-
-<div class="service"
-onclick="utilityModal('Suv')">
-
-<div class="service-icon">💧</div>
-
-<h3>Suv</h3>
-
-<p>
-Suv xizmati
-</p>
-
-</div>
-
-<div class="service"
-onclick="utilityModal('Internet')">
-
-<div class="service-icon">🌐</div>
-
-<h3>Internet</h3>
-
-<p>
-Internet provayder
-</p>
-
-</div>
-
-</div>
-
-<h2 class="section-title">
-So'nggi tranzaksiyalar
-</h2>
-
-<div id="historyArea">
-
-${
-appData.history.length
-?
-appData.history
-.slice(0,5)
-.map(item=>`
-
-<div class="service">
-
-<h3>
-${item.type}
-</h3>
-
-<p>
-${item.amount.toLocaleString()} so'm
-</p>
-
-<p>
-${item.date}
-</p>
-
-</div>
-
-`).join('')
-:
-'<p style="color:#999">Tranzaksiyalar mavjud emas</p>'
-}
-
-</div>
-
-`;
-}
-
-function showWallet(){
-
-setActive('walletBtn');
-
-document.getElementById('pageContent').innerHTML=`
-
-<h2 class="section-title">
-Wallet
-</h2>
-
-<div class="services">
-
-${appData.cards.map(card=>`
-
-<div class="service">
-
-<div class="service-icon">
-💳
-</div>
-
-<h3>
-${maskCard(card.number)}
-</h3>
-
-<p>
-${card.expire}
-</p>
-
-<button
-class="gold-btn"
-onclick="deleteCard('${card.number}')">
-
-Kartani o'chirish
-
-</button>
-
-</div>
-
-`).join('')}
-
-</div>
-
-<button
-class="gold-btn"
-onclick="cardModal()">
-
-+ Karta qo'shish
-
-</button>
+<a href="https://instagram.com/${match.username}" target="_blank">
+<button>Instagram Profil</button>
+</a>
 
 `;
 
 }
 
-/* NAVIGATION */
-
-document
-.getElementById('homeBtn')
-.onclick=showHome;
-
-document
-.getElementById('walletBtn')
-.onclick=showWallet;
-function openModal(title,body){
-
-document.getElementById('modal').style.display='flex';
-
-document.getElementById('modalTitle').innerHTML=title;
-
-document.getElementById('modalBody').innerHTML=body;
-
-}
-
-function closeModal(){
-
-document.getElementById('modal').style.display='none';
-
-}
-
-function simpleInfo(title,text){
-
-openModal(title,`
-
-<div style="
-background:#1a1a1a;
-padding:20px;
-border-radius:20px;
-margin-top:15px;
-">
-
-<h3>${title}</h3>
-
-<p style="margin-top:10px;color:#ccc;">
-${text}
-</p>
-
-</div>
-
-`);
-
-}
-
-function transferModal(){
-
-if(appData.cards.length===0){
-
-alert("Avval karta qo'shing");
-
-return;
-
-}
-
-openModal("Pul o'tkazish",`
-
-<input
-class="modal-input"
-id="toCard"
-placeholder="Qabul qiluvchi karta">
-
-<input
-class="modal-input"
-id="amount"
-type="number"
-placeholder="Summa">
-
-<button
-class="gold-btn"
-onclick="makeTransfer()">
-
-O'tkazish
-
-</button>
-
-`);
-
-}
-
-function makeTransfer(){
-
-let card=
-document.getElementById('toCard')
-.value.trim();
-
-let amount=
-parseInt(
-document.getElementById('amount')
-.value
-);
-
-if(!/^\d{16}$/.test(card)){
-
-alert("Karta raqami noto'g'ri");
-
-return;
-
-}
-
-if(!amount || amount<=0){
-
-alert("Summani kiriting");
-
-return;
-
-}
-
-let fee=Math.floor(amount*0.01);
-
-let total=amount+fee;
-
-if(total>appData.balance){
-
-alert("Mablag' yetarli emas");
-
-return;
-
-}
-
-appData.balance-=total;
-
-appData.cashback+=Math.floor(amount*0.005);
-
-addHistory(
-"Transfer",
-amount
-);
-
-save();
-
-openModal("Transfer chek",`
-
-<div style="
-background:#1a1a1a;
-padding:20px;
-border-radius:20px;
-">
-
-<h3>HUMO PAY CHEK</h3>
-
-<p style="margin-top:10px;">
-Qabul qiluvchi:
-<br>
-${maskCard(card)}
-</p>
-
-<p style="margin-top:10px;">
-Summa:
-${amount.toLocaleString()} so'm
-</p>
-
-<p style="margin-top:10px;">
-Komissiya:
-${fee.toLocaleString()} so'm
-</p>
-
-<hr style="margin:15px 0;">
-
-<b>
-Qoldiq:
-${appData.balance.toLocaleString()} so'm
-</b>
-
-</div>
-
-`);
-
-showHome();
-
-}
-
-function utilityModal(type){
-
-openModal(type+" to'lovi",`
-
-<input
-class="modal-input"
-id="abonent"
-placeholder="Abonent raqami">
-
-<input
-class="modal-input"
-id="utilityAmount"
-type="number"
-placeholder="To'lov summasi">
-
-<button
-class="gold-btn"
-onclick="payUtility('${type}')">
-
-To'lash
-
-</button>
-
-`);
-
-}
-
-function payUtility(type){
-
-let abonent=
-document.getElementById('abonent')
-.value.trim();
-
-let amount=
-parseInt(
-document.getElementById('utilityAmount')
-.value
-);
-
-if(!abonent){
-
-alert("Abonent raqamini kiriting");
-
-return;
-
-}
-
-if(!amount || amount<=0){
-
-alert("Noto'g'ri summa");
-
-return;
-
-}
-
-if(amount>appData.balance){
-
-alert("Mablag' yetarli emas");
-
-return;
-
-}
-
-appData.balance-=amount;
-
-appData.cashback+=Math.floor(amount*0.003);
-
-addHistory(type,amount);
-
-save();
-
-openModal(type+" cheki",`
-
-<div style="
-background:#1a1a1a;
-padding:20px;
-border-radius:20px;
-">
-
-<h3>${type}</h3>
-
-<p style="margin-top:10px;">
-Abonent:
-${abonent}
-</p>
-
-<p style="margin-top:10px;">
-To'lov:
-${amount.toLocaleString()} so'm
-</p>
-
-<hr style="margin:15px 0;">
-
-<b>
-Qoldiq:
-${appData.balance.toLocaleString()} so'm
-</b>
-
-</div>
-
-`);
-
-showHome();
-
-}
-
-function cardModal(){
-
-openModal("Karta qo'shish",`
-
-<input
-class="modal-input"
-id="newCard"
-placeholder="16 xonali karta">
-
-<input
-class="modal-input"
-id="newExpire"
-placeholder="MM/YY">
-
-<input
-class="modal-input"
-id="newCvv"
-type="password"
-placeholder="CVV">
-
-<button
-class="gold-btn"
-onclick="saveCard()">
-
-Kartani saqlash
-
-</button>
-
-`);
-
-}
-
-function saveCard(){
-
-let card=
-document.getElementById('newCard')
-.value.trim();
-
-let expire=
-document.getElementById('newExpire')
-.value.trim();
-
-let cvv=
-document.getElementById('newCvv')
-.value.trim();
-
-if(!/^\d{16}$/.test(card)){
-
-alert("Karta 16 xonali bo'lishi kerak");
-
-return;
-
-}
-
-if(!/^\d{2}\/\d{2}$/.test(expire)){
-
-alert("MM/YY format");
-
-return;
-
-}
-
-if(!/^\d{3}$/.test(cvv)){
-
-alert("CVV 3 xonali");
-
-return;
-
-}
-
-let exists=
-appData.cards.some(
-c=>c.number===card
-);
-
-if(exists){
-
-alert("Bu karta mavjud");
-
-return;
-
-}
-
-appData.cards.push({
-
-number:card,
-expire:expire,
-cvv:cvv,
-holder:currentUser.name.toUpperCase()
-
-});
-
-save();
-
-closeModal();
-
-showWallet();
-
-}
-
-function deleteCard(number){
-
-let ok=
-confirm(
-"Kartani o'chirasizmi?"
-);
-
-if(!ok) return;
-
-appData.cards=
-appData.cards.filter(
-card=>card.number!==number
-);
-
-save();
-
-showWallet();
-
-}
-
-window.onload=()=>{
-
-let savedUser=
-localStorage.getItem(
-'humo_v2_user'
-);
-
-let savedData=
-localStorage.getItem(
-'humo_v2_data'
-);
-
-if(savedUser && savedData){
-
-currentUser=
-JSON.parse(savedUser);
-
-appData=
-JSON.parse(savedData);
-
-openApp();
-
-}
-
-};
-
-function showStats(){
-
-setActive('statsBtn');
-
-document.getElementById('pageContent').innerHTML=`
-
-<h2 class="section-title">
-Statistika
-</h2>
-
-<div class="service">
-
-<h3>Joriy balans</h3>
-
-<p style="
-font-size:28px;
-font-weight:700;
-margin-top:10px;
-color:#FFD700;
-">
-
-${appData.balance.toLocaleString()} so'm
-
-</p>
-
-</div>
-
-<div class="service" style="margin-top:15px;">
-
-<h3>Cashback</h3>
-
-<p style="
-font-size:24px;
-font-weight:700;
-margin-top:10px;
-color:#00d084;
-">
-
-${appData.cashback.toLocaleString()} so'm
-
-</p>
-
-</div>
-
-<canvas
-id="chart"
-width="350"
-height="220"
-style="
-margin-top:20px;
-width:100%;
-background:#111;
-border-radius:20px;
-">
-</canvas>
-
-`;
-
-drawChart();
-
-}
-
-function drawChart(){
-
-const canvas=
-document.getElementById('chart');
-
-if(!canvas) return;
-
-const ctx=
-canvas.getContext('2d');
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-let values=[];
-
-for(let i=0;i<7;i++){
-
-values.push(
-Math.floor(
-Math.random()*180
-)+40
-);
-
-}
-
-for(let i=0;i<values.length;i++){
-
-let h=values[i];
-
-let x=i*48+18;
-
-ctx.fillStyle="#FFD700";
-
-ctx.fillRect(
-x,
-200-h,
-28,
-h
-);
-
-ctx.fillStyle="#fff";
-
-ctx.font="12px Inter";
-
-ctx.fillText(
-(i+1)+"k",
-x-2,
-215
-);
-
-}
-
-}
-
-function showProfile(){
-
-setActive('profileBtn');
-
-document.getElementById('pageContent').innerHTML=`
-
-<div class="bank-card">
-
-<h2>
-${currentUser.name}
-</h2>
-
-<p style="
-margin-top:8px;
-color:#999;
-">
-
-@${currentUser.username}
-
-</p>
-
-<hr style="
-margin:20px 0;
-border-color:#222;
-">
-
-<p>
-💰 Balans:
-<b style="color:#FFD700;">
-${appData.balance.toLocaleString()} so'm
-</b>
-</p>
-
-<p style="
-margin-top:10px;
-">
-🎁 Cashback:
-<b style="color:#00d084;">
-${appData.cashback.toLocaleString()} so'm
-</b>
-</p>
-
-<p style="
-margin-top:10px;
-">
-💳 Kartalar:
-<b>
-${appData.cards.length}
-</b>
-</p>
-
-<button
-class="gold-btn"
-onclick="editProfile()">
-
-Profilni tahrirlash
-
-</button>
-
-<button
-class="gold-btn"
-style="
-background:#222;
-color:white;
-"
-onclick="toggleTheme()">
-
-Dark / Light
-
-</button>
-
-<button
-class="gold-btn"
-style="
-background:#00d084;
-margin-top:10px;
-"
-onclick="showQR()">
-
-QR yaratish
-
-</button>
-
-<button
-class="gold-btn"
-style="
-background:#ff5577;
-margin-top:10px;
-"
-onclick="logout()">
-
-Chiqish
-
-</button>
-
-</div>
-
-`;
-
-}
-
-function editProfile(){
-
-openModal("Profil",`
-
-<input
-class="modal-input"
-id="newName"
-value="${currentUser.name}">
-
-<button
-class="gold-btn"
-onclick="saveProfile()">
-
-Saqlash
-
-</button>
-
-`);
-
-}
-
-function saveProfile(){
-
-let newName=
-document.getElementById('newName')
-.value.trim();
-
-if(!newName){
-
-alert("Ism kiriting");
-
-return;
-
-}
-
-currentUser.name=newName;
-
-save();
-
-closeModal();
-
-showProfile();
-
-document.getElementById(
-'avatar'
-).innerHTML=
-newName
-.charAt(0)
-.toUpperCase();
-
-}
-
-function toggleTheme(){
-
-document.body.classList.toggle(
-'light-theme'
-);
-
-}
-
-function showQR(){
-
-let code=
-Math.random()
-.toString()
-.substring(2,14);
-
-openModal("QR To'lov",`
-
-<div style="
-background:white;
-color:black;
-padding:25px;
-border-radius:20px;
-text-align:center;
-">
-
-<div style="
-font-size:70px;
-letter-spacing:6px;
-">
-
-▓▓▓
-<br>
-▓░▓
-<br>
-▓▓▓
-
-</div>
-
-<h3 style="margin-top:15px;">
-${code}
-</h3>
-
-<p style="margin-top:10px;">
-Demo QR kod
-</p>
-
-</div>
-
-`);
-
-}
-
-function logout(){
-
-currentUser=null;
-
-document.getElementById('app').style.display='none';
-
-document.getElementById('authPage').style.display='flex';
-
-document.getElementById('loginUser').value='';
-
-document.getElementById('loginPass').value='';
-
-showLogin();
-
-}
-
-document
-.getElementById('statsBtn')
-.onclick=showStats;
-
-document
-.getElementById('profileBtn')
-.onclick=showProfile;
-
-const style=
-document.createElement('style');
-
-style.innerHTML=`
-
-.light-theme{
-
-background:#f5f5f5;
-color:#111;
-
-}
-
-.light-theme .bank-card,
-.light-theme .service,
-.light-theme .auth-box,
-.light-theme .modal-content{
-
-background:white!important;
-color:black!important;
-
-}
-
-.light-theme .bottom-nav{
-
-background:white!important;
-
-}
-
-`;
-
-document.head.appendChild(style);
 </script>
+
 </body>
 </html>
